@@ -15,16 +15,6 @@ pub struct ISSPosition {
     pub longitude: String,
 }
 
-impl ISSNowResponse {
-    pub fn from_str(s: &str) -> Result<ISSNowResponse, OpenNotifyError> {
-        if let Ok(response) = serde_json::from_str(s) {
-            return Ok(response);
-        }
-
-        Err(OpenNotifyError::DeserializationFailed)
-    }
-}
-
 impl OpenNotifyResponse for ISSNowResponse {
     fn deserialize(s: &str) -> Result<Self, OpenNotifyError> {
         if let Ok(response) = serde_json::from_str(s) {
